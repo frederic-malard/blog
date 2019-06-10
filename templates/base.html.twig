@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	
+	<title>blog de frédéric - {% block title %}{% endblock %}</title>
+
+	<link rel="shortcut icon" href="/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+	
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" href="/css/bootstrap-theme.css" media="screen" >
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/perso.css">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="/js/html5shiv.js"></script>
+	<script src="/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+{% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path('homepage') %}
+	<body class="home">
+{% else %}
+	<body class="nothome">
+{% endif %}
+
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+				<a class="navbar-brand" href="{{ path("homepage") }}">
+                    <img src="/favicon/favicon.ico" alt="Frederic Malard">
+                    <span class="titreNavbar d-block">Frédéric Malard</span>
+                </a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					{% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path("homepage") %}
+						<li class="active">
+					{% else %}
+						<li>
+					{% endif %}
+                        <a href="{{ path("homepage") }}">
+                            Accueil
+                        </a>
+                    </li>
+					{% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path("drawings_index") %}
+						<li class="active">
+					{% else %}
+						<li>
+					{% endif %}
+                        <a href="{{ path('drawings_index') }}">
+                            Dessins
+                        </a>
+                    </li>
+					{% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path("textes") %}
+						<li class="active">
+					{% else %}
+						<li>
+					{% endif %}
+                        <a href="{{ path('textes') }}">
+                            Textes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('compos') }}">
+                            Compos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Photos
+                        </a>
+                    </li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Sites
+                            <b class="caret"></b>
+                        </a>
+						<ul class="dropdown-menu">
+							<li>
+                                <a href="http://frederic-malard.com">
+                                    portfolio
+                                </a>
+                            </li>
+							<li>
+                                <a href="http://louvre.frederic-malard.com">
+                                    louvre
+                                </a>
+                            </li>
+							<li class="active">
+                                <a href="#">
+                                    blog personnel
+                                </a>
+                            </li>
+							<li>
+                                <a href="http://ecrivain.frederic-malard.com">
+                                    blog écrivain
+                                </a>
+                            </li>
+						</ul>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+			
+	{% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path('homepage') %}
+
+	{% else %}
+		<header id="head" class="secondary"></header>
+
+		<div class="container">
+
+			{# <ol class="breadcrumb">
+				<li><a href="index.html">Home</a></li>
+				<li class="active">About</li>
+			</ol> #}
+	{% endif %}
+
+        {% block body %}{% endblock %}
+
+    <!-- footer -->
+    <div class="footer2">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p>
+								instagram : fred.dessins
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right pFooterRight">
+								Copyright &copy; 2014, Frédéric Malard.<br>
+                                Design partially based on template created by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+							</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+	</footer>	
+		
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="/js/headroom.min.js"></script>
+	<script src="/js/jQuery.headroom.min.js"></script>
+	<script src="/js/template.js"></script>
+
+        {#<script src="/js/jquery.min.js"></script>
+        <script src="/js/poppers.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>#}
+
+
+        {% block javascripts %}{% endblock %}
+
+</body>
+</html>

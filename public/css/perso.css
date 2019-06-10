@@ -1,0 +1,115 @@
+.navbar-brand > img
+{
+    margin-right : 4px;
+}
+.navbar-brand
+{
+    font-family : 'Times New Roman', Times, serif !important;
+}
+.titreNavbar
+{
+    position : relative;
+    top : 5px;
+}
+.recipientBulle
+{
+    width : 50% !important;
+    margin : auto;
+}
+.bulle
+{
+    width : 100% !important;
+}
+.recipientRecipient
+{
+    margin : auto !important;
+    float : none;
+}
+.categorieImg
+{
+    max-width : 50% !important;
+    display : block !important;
+    margin : auto !important;
+}
+.categorieA
+{
+    text-align: center !important;
+    margin : auto !important;
+    margin-bottom : 0em !important;
+    padding-bottom : 0em !important;
+}
+.categorieSpan
+{
+    display : block !important;
+    text-align: center !important;
+    margin : auto !important;
+}
+.categorieDiv
+{
+    margin-bottom : 4em !important;
+}
+.pFooterRight
+{
+    margin-right : 3em !important;
+}
+.btnRetour
+{
+    width: fit-content;
+    display : block;
+    margin : auto !important;
+}
+.imgDessin
+{
+    margin-bottom : 2em !important;
+}
+.aImgTexteIndex
+{
+    display : block !important;
+    width : 60% !important;
+    margin : auto !important;
+    margin-top : 2em !important;
+    margin-bottom : 2em !important;
+}
+.aImgTexteIndex > img
+{
+    width : 100% !important;
+}
+table
+{
+    width : 100% !important;
+}
+.table tr:nth-child(odd)
+{
+    background : #ddd3d7 !important;
+}
+.table tr:nth-child(even)
+{
+    background : #eee3e7 !important;
+}
+.table-white tr
+{
+    background : #fff !important;
+    border-top : 1px solid #eee !important;
+    border-bottom : 1px solid #eee !important;
+}
+.nomCompo
+{
+    font-size : 1.3em;
+}
+.cardMaison
+{
+    background : #fff9e0 !important;
+    margin : 1em;
+    margin-right : 0.1em;
+    margin-left : 0.1em;
+    border-radius: 1em;
+    padding : 1.5em;
+}
+a.card
+{
+    display : block;
+}
+a table
+{
+    color : black !important;
+}

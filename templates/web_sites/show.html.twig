@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ website.name }}{% endblock %}
+
+{% block body %}
+
+<h2 class="text-center">
+    {{ website.name }} - 
+    <a href="{{ path("web_sites") }}">retour</a>
+</h2>
+<p>
+    créé le {{ website.stringDateCreation() }}
+</p>
+<p class="text-center">
+    <img src="{{ website.image }}" alt="image">
+</p>
+<p>
+    {{ website.description }}
+</p>
+<p class="text-center mt-4">
+    <a href="{{ website.url }}" class="btn btn-primary">
+        accéder au site
+    </a>
+</p>
+
+{% endblock %}

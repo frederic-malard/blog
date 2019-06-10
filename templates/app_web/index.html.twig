@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}applications web{% endblock %}
+
+{% block body %}
+
+<h2 class="text-center">
+    applications web
+</h2>
+
+<div class="row mt-5">
+    {% for app in apps %}
+        <div class="col-md-4 card">
+            <div class="card-header">
+                <a href="{{ path('app_web_launch', {'slug' : app.slug}) }}">
+                    {{ app.name }}
+                </a>
+                <p>
+                    créée le {{ app.stringDateCreation() }}
+                </p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <img src="{{ app.image }}" alt="image" style="width:100%">
+                </p>
+                <p>
+                    {{ app.resume }}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{#<p class="text-center mt-5">
+    <a href="{{ path("app_web_create") }}" class="btn btn-primary">Ajouter une app web</a>
+</p>#}
+
+<p class="alert alert-info mt-5">
+    note informative : Cette section répertorie mes applications web. Un site symfony classique est d'habitude considéré comme une applications web. Ce n'est pas ce que j'ai choisi de répertorier ici (mes sites symfony classiques sont répertoriés parmis les autres sites dans la section "mes sites"). Les applications web répertoriées ici sont des applications plus algorithmiquement poussées qu'un site classique. Celles ci sont faites en jquery, et font davantage appel à l'inventivité, à la créativité, à l'imagination et aux compétences dans le domaine de l'algorithmique. Elles demandent aussi un esprit un peu plus scientifique, voir parfois un peu mathématique.
+</p>
+
+{% endblock %}

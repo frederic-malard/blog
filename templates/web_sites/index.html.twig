@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}sites{% endblock %}
+
+{% block body %}
+
+<h2 class="text-center">
+    mes sites web
+</h2>
+
+<div class="row">
+    {% for website in websites %}
+        <div class="col-md-4 card">
+            <div class="card-header">
+                <p class="text-center">
+                    <a href="{{ path('web_sites_show', {'slug' : website.slug}) }}">
+                        {{ website.name }}
+                    </a>
+                    
+                </p>
+                <p>
+                    {{ website.stringDateCreation() }}
+                </p>
+            </div>
+            <div class="card-body">
+                <p>
+                    <img src="{{ website.image }}" alt="website" style="width:100%">
+                </p>
+                <p>
+                    {{ website.description }}
+                </p>
+                <p class="text-center mt-3">
+                    <a href="{{ website.url }}" class="btn btn-primary mx-2">accéder au site</a>
+                    <a href="{{ path('web_sites_show', {'slug' : website.slug}) }}" class="btn btn-primary mt-3 mx-2">informations relatives au site</a>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{#<p class="text-center mt-4">
+    <a href="{{path('web_sites_create')}}" class="btn btn-primary">Nouveau site</a>
+</p>#}
+
+{% endblock %}

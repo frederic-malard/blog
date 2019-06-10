@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dessins{% endblock %}
+
+{% block body %}
+
+<header class="page-header">
+    <h1 class="page-title">
+        mes dessins
+    </h1>
+</header>
+
+{#<form action="post">
+    <p>
+        Choisir une catégorie :<br/>
+        ...
+    </p>
+    <p>
+        Trier par :<br/>
+        (date création, date publication, croissant / décroissant, etc)
+    </p>
+</form>#}
+{# show all drawings #}
+
+
+{#<p>
+    Présentation :
+    <button class="btn btn-primary mx-1" id="slideButton">
+        slide
+    </button>
+    <button class="btn btn-primary mx-1" id="grideButton">
+        grille
+    </button>
+</p>
+
+
+<div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner" id="mySlide">
+        {% for drawing in drawings %}
+            {% set url = path('drawing_show', {'slug' : drawing.slug}) %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <a href="{{url}}">
+                    <img src="{{drawing.url}}" class="d-block w-100" alt="dessin">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{drawing.nom}}</h5>
+                    <p>{{drawing.caption}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>#}
+
+
+<div class="row" id="gride">
+    {% for drawing in drawings %}
+        {% set url = path('drawing_show', {'slug' : drawing.slug}) %}
+        {#<div class="card col-md-4">
+            <div class="card-header">
+                <a href="{{url}}">
+                    <h3>{{drawing.nom}}</h3>
+                </a>
+                <p>
+                    catégorie(s) : 
+                    {% for category in drawing.categorie %}
+                        {{category.name}}
+                        {% if not loop.last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                    <br>
+                    dessiné le {{drawing.stringDateCreation}}<br>
+                    publié le {{drawing.stringDatePublication}}
+                </p>
+            </div>
+            <div class="card-body">
+                <p>#}
+                    {% if loop.index0 % 3 == 0 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                    <a href="{{url}}" class="col-sm-4">
+                        <img src="{{drawing.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
+                    </a>
+                {#</p>
+                <p>
+                    {{drawing.getCaptionIntroduction()}}
+                </p>
+                <p>
+                    <a href="{{url}}" class="btn btn-primary">
+                        Voir le dessin
+                    </a>
+                </p>
+            </div>
+        </div>#}
+    {% endfor %}
+</div>
+
+<hr class="my-5">
+
+<p class="text-center my-5">
+    {#<a href="{{path("drawing_new")}}" class="btn btn-primary mr-3">Ajouter un dessin</a>#}
+    <a href="{{path("drawings_categories")}}" class="ml-3 btn btn-primary">Voir les catégories</a>
+</p>
+
+<hr class="my-5">
+
+{% endblock %}
+
+{#}
+{% block javascripts %}
+    <script src="/js/drawingsPresentation.js"></script>
+{% endblock %}
+#}

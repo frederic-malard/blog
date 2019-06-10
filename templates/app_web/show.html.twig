@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ appweb.name }}{% endblock %}
+
+{% block body %}
+
+<h2 class="text-center">
+    {{ appweb.name }} - 
+    <a href="{{path('app_web')}}" class="btn btn-primary">
+        retour
+    </a>
+</h2>
+
+<hr class="my-5">
+
+{# the appweb itself, modified with the JS file #}
+<div class="card" style="width:100%;" id="appweb">
+</div>
+
+<hr class="my-5">
+
+<div class="card">
+    <div class="card-header">
+        <h2>
+            {{ appweb.name }}
+        </h2>
+        <p>
+            Créée le {{ appweb.stringDateCreation }}
+        </p>
+    </div>
+    <div class="card-body">
+        <p class="lead mb-4">
+            {{ appweb.resume }}
+        </p>
+        {{ appweb.description | raw }}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/jsApps/{{ appweb.url }}.js"></script>
+{% endblock %}

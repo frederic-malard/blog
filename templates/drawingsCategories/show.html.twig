@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{category.name}}{% endblock %}
+
+{% block body %}
+
+<header class="page-header">
+    <h1 class="page-title">
+        {{category.name}}
+    </h1>
+</header>
+
+<p class="text-center h4 my-5">
+    dessins dans cette catégorie :
+</p>
+<hr class="my-4">
+<div class="row">
+    {% for drawing in category.dessin %}
+        <div class="col-sm-4">
+            <p>
+                {{drawing.nom}}
+            </p>
+            <p>
+                <a href="{{path('drawing_show', {'slug' : drawing.slug})}}">
+                    <img src="{{drawing.url}}" alt="dessin">
+                </a>
+            </p>
+        </div>
+    {% endfor %}
+</div>
+{#<p>
+    <a href="{{path('drawings_categories_edit', {'slug' : category.slug})}}" class="btn btn-primary">Modifier la catégorie</a>
+</p>#}
+
+<hr class="my-4">
+
+<p>
+    <a href="{{path('drawings_categories')}}" class="btn btn-primary btnRetour">
+        Retour
+    </a>
+</p>
+
+<hr class="my-4">
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{#
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une catégorie{% endblock %}
+
+{% form_theme form _self %}
+
+{% block body %}
+
+    <h3>modifier la catégorie</h3>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    {{ form_end(form) }}
+
+    <p>
+        Liste des dessins (puisez dans ces noms pour renseigner certains champs ci dessus)
+    </p>
+
+    <div class="row">
+        {% for drawing in drawings %}
+            <div class="col-3">
+                <p>
+                    {{ drawing.nom }}
+                </p>
+                <p>
+                    <img src="{{drawing.url}}" alt="dessin" style="width:100%;">
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block _category_drawing_complete_dessin_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _category_drawing_complete_dessin_widget %}
+    <p>
+        Ajoutez des dessins pour cette catégorie (entrez un des noms listés en bas de page)
+    </p>
+    {{ form_widget(form) }}
+    <div type="button" id="add-drawing" class="btn">
+        Ajouter un dessin
+    </div>
+{% endblock %}
+
+{% block _category_drawing_complete_dessin_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _category_drawing_complete_dessin_entry_widget %}
+    <div class="form-group row" id="block_{{id}}">
+        <div class="col-11">
+            {{ form_widget(form.nom) }}
+        </div>
+        <div class="col">
+            <button type="button" data-action="delete" data-target="#block_{{id}}" class="btn btn-danger">
+                X
+            </button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/addDrawingDrawingsCategories.js"></script>
+{% endblock %}
+
+#}

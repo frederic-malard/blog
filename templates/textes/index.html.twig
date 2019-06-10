@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}textes{% endblock %}
+
+{% block body %}
+
+<header class="page-header">
+    <h1 class="page-title">
+        tous mes textes
+    </h1>
+</header>
+
+{% for texte in textes %}
+    {% if not loop.first %}
+        <hr class="my-4">
+    {% endif %}
+    <h3 class="text-center">
+        <a href="{{ path('textes_show', {'slug' : texte.slug}) }}">
+            {{ texte.name }}
+        </a>
+    </h3>
+
+    <a href="{{ path('textes_show', {'slug' : texte.slug}) }}" class="aImgTexteIndex">
+        <img src="{{ texte.image }}" alt="image" style="width:300px; display:block;" class="float-left mr-3">
+    </a>
+
+    <table class="table">
+        <tr>
+            <td>date de première écriture</td>
+            <td>
+                {{ texte.stringDateCreation() }}
+            </td>
+        </tr>
+        <tr>
+            <td>date de première publication de la présente version</td>
+            <td>{{ texte.stringDatePublication() }}</td>
+        </tr>
+        <tr>
+            <td>résumé</td>
+            <td>{{ texte.resume }}</td>
+        </tr>
+        <tr>
+            <td>extrait du début</td>
+            <td>{{ texte.debut() | raw }}</td>
+        </tr>
+    </table>
+    
+    {% if loop.last %}
+        <hr class="my-4">
+    {% endif %}
+{% endfor %}
+
+<p class="text-center mt-4">
+    {#<a href="{{ path('textes_create') }}" class="btn btn-primary">
+        Nouveau texte
+    </a>#}
+</p>
+
+{% endblock %}

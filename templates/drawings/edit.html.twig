@@ -1,0 +1,56 @@
+{#
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un dessin{% endblock %}
+
+{% form_theme form _self %}
+
+{% block body %}
+
+    <h3>modifier l'annonce</h3>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block _drawing_categorie_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _drawing_categorie_widget %}
+    <p>
+        Ajoutez des catégories pour ce dessin
+    </p>
+    {{ form_widget(form) }}
+    <div type="button" id="add-category" class="btn">
+        Ajouter une catégorie
+    </div>
+{% endblock %}
+
+{% block _drawing_categorie_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _drawing_categorie_entry_widget %}
+    <div class="form-group row" id="block_{{id}}">
+        <div class="col-11">
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="col">
+            <button type="button" data-action="delete" data-target="#block_{{id}}" class="btn btn-danger">
+                X
+            </button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/addCategoryDrawing.js"></script>
+{% endblock %}
+
+#}

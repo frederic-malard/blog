@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{ path('homepage') }}">
+        Frédéric Malard
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('homepage') }}">
+                    Accueil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('drawings_index') }}">
+                    dessins
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('compos') }}">
+                    compositions musicales
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('web_sites') }}">
+                    sites web
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('textes') }}">
+                    écriture
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_web') }}">
+                    applications web
+                </a>
+            </li>
+            {#<li class="nav-item">
+                <a class="nav-link" href="{{ path('3D') }}">
+                    3D
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('jeuxVideos') }}">
+                    jeux vidéos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('jeuxSociete') }}">
+                    jeux de société
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('sciences') }}">
+                    vulgarisation scientifique
+                </a>
+            </li>#}
+        </ul>
+    </div>
+</nav>
+{% for label, messages in app.flashes %}
+    <div class="container jumbotron alert alert-{{label}} mt-3">
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    </div>
+{% endfor %}

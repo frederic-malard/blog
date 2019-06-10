@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+
+    <header class="page-header">
+        <h1 class="page-title">
+            catégories de dessins
+        </h1>
+    </header>
+
+    <div class="row">
+        <div>
+        {% for category in categories %}
+            {% if loop.index0 % 3 == 0 %}
+                </div>
+                <div class="row">
+            {% endif %}
+            <div class="col-sm-4 categorieDiv">
+                <a href="{{path('drawings_categories_show', {'slug' : category.slug})}}" class="h3 categorieA">
+                    <span class="categorieSpan">{{category.name}}</span>
+                </a>
+                <br>
+                <a href="{{path('drawings_categories_show', {'slug' : category.slug})}}">
+                    <img src="{{ category.representant.url }}" alt="{{ category.name }}" class="categorieImg">
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+{% endblock %}

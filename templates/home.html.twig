@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}accueil{% endblock %}
+
+{% block body %}
+
+<!-- Header -->
+	<header id="head">
+		<div class="container">
+			<div class="row">
+				<h1 class="lead">
+                    CREATIONS ARTISTIQUES
+                </h1>
+				<p class="tagline">
+                    Ce blog regroupe mes différentes créations artistiques : dessins, textes et compositions musicales. Il ne s'agit que d'un passe temps, ce site servant uniquement d'exercice pour apprendre le webmastering.
+                </p>
+			</div>
+		</div>
+	</header>
+	<!-- /Header -->
+		
+	<!-- Highlights - jumbotron -->
+	<div class="jumbotron">
+        <div class="row">
+            <div class="col col-sm-6 ">
+                <div class="recipientBulle">
+                    <a href="{{ path('drawings_index') }}">
+                        <img src="/images/bulleDessin.png" alt="dessins" class="bulle">
+                    </a>
+                </div>
+            </div>
+            <div class="col col-sm-6 ">
+                <div class="recipientBulle">
+                    <a href="{{ path('textes') }}">
+                        <img src="/images/bulleTexte.png" alt="texte" class="bulle">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row rowRecipient">
+            <div class="col col-sm-6 recipientRecipient">
+                <div class="recipientBulle">
+                    <a href="{{ path('compos') }}">
+                        <img src="/images/bulleMusique.png" alt="musique" class="bulle">
+                    </a>
+                </div>
+            </div>
+        </div>
+	</div>
+	<!-- /Highlights -->
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{#
+
+{% extends 'base.html.twig' %}
+
+{% block title %}nouvelle application{% endblock %}
+
+{% form_theme form _self %}
+
+{% block body %}
+
+<h2 class="text-center mb-5">
+    nouvelle application
+</h2>
+
+{{ form(form) }}
+
+<p class="alert alert-info mt-5">
+    note : ce formulaire ne sert pas à créer une app web en particulier, mais à renseigner et répertorier une app web déjà créée. Il faut donc, dans un premier temps, créer un fichier script dans le dossier public/jsApps, puis utiliser ce formulaire pour le renseigner et le répertorier. Le slug devra permettre de faire le lien avec le fichier, cf la route app_web_launch.
+</p>
+
+{% endblock %}
+
+{% block _app_web_competences_widget %}
+
+    <p>Quelles competences relatives au développement d'app web cette application met-elle en évidence ?</p>
+
+    {{ form_widget(form) }}
+
+    <div class="form-group">
+        <button type="button" id="appWebCompetence" class="btn btn-primary">Ajouter une compétence</button>
+    </div>
+
+{% endblock %}
+
+{% block _app_web_competences_entry_row %}
+
+    {{ form_widget(form) }}
+
+{% endblock %}
+
+{% block _app_web_competences_entry_widget %}
+
+    <div class="form-group row" id="block_{{id}}">
+        <div class="col-11">
+            <div class="row">
+                <div class="col">
+                    {#<div class="row">
+                        <div class="col-12">
+                            <select name="existant" id="existant">
+                                <option value="non" selected>La compétence est dans la liste ?</option>
+                                {% for competence in competences %}
+                                    <option value="{{competence.name}}=>{{competence.description}}">{{competence.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12">#}
+                            {{ form_widget(form.name) }}
+                        {#</div>
+                    </div># }
+                </div>
+                <div class="col">
+                    {{ form_widget(form.description) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+            <button type="button" data-action="delete" data-target="#block_{{id}}" class="btn btn-danger">
+                X
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="/js/ajoutCompetence.js"></script>
+
+{% endblock %}
+
+#}
