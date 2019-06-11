@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}photos{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<header class="page-header">
+    <h1 class="page-title">
+        mes photos
+    </h1>
+</header>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/PhotosController.php'|file_link(0) }}">src/Controller/PhotosController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/photos/index.html.twig'|file_link(0) }}">templates/photos/index.html.twig</a></code></li>
-    </ul>
+<div class="row" id="gride">
+    {% for photo in photos %}
+        {% set url = path('photo_show', {'slug' : photo.slug}) %}
+        {% if loop.index0 % 3 == 0 %}
+            </div>
+            <div class="row">
+        {% endif %}
+        <a href="{{url}}" class="col-sm-4">
+            <img src="{{photo.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
+        </a>
+    {% endfor %}
 </div>
+
+<hr class="my-5">
+
+{#<p class="text-center my-5">
+    <a href="{{path("photo_new")}}" class="btn btn-primary mr-3">Ajouter une photo</a>
+    <a href="{{path("photos_categories")}}" class="ml-3 btn btn-primary">Voir les catégories</a>
+</p>
+
+<hr class="my-5">#}
+
 {% endblock %}

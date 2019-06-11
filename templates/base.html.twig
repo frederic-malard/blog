@@ -52,15 +52,6 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					{% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path("homepage") %}
-						<li class="active">
-					{% else %}
-						<li>
-					{% endif %}
-                        <a href="{{ path("homepage") }}">
-                            Accueil
-                        </a>
-                    </li>
 					{% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path("drawings_index") %}
 						<li class="active">
 					{% else %}
@@ -79,14 +70,27 @@
                             Textes
                         </a>
                     </li>
-                    <li>
+                    {% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path("compos") %}
+						<li class="active">
+					{% else %}
+						<li>
+					{% endif %}
                         <a href="{{ path('compos') }}">
                             Compos
                         </a>
                     </li>
+                    {% if path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) == path("photos") %}
+						<li class="active">
+					{% else %}
+						<li>
+					{% endif %}
+                        <a href="{{ path('photos') }}">
+                            Photos
+                        </a>
+                    </li>
                     <li>
                         <a href="#">
-                            Photos
+                            3D
                         </a>
                     </li>
 					<li class="dropdown">
@@ -154,7 +158,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right pFooterRight">
-								Copyright &copy; 2014, Frédéric Malard.<br>
+								Copyright &copy; 2019, Frédéric Malard.<br>
                                 Design partially based on template created by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
 							</p>
 						</div>

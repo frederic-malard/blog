@@ -15,13 +15,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DrawingsController extends AbstractController
 {
     /**
-     * @Route("/dessins", name="drawings_index")
+     * @Route("/dessins/{page<\d+>?1}", name="drawings_index")
      */
-    public function index(DessinRepository $repository)
+    public function index(DessinRepository $repository, $page)
     {
-        $drawings = $repository->findAll();
+        $limit = 9;
+        $start = ($page - 1) * $limit;
+        $total = count($repository->findAll());
+        $pages = ceil($total / $limit);
+
+        $drawings = $repository->findBy([], [], $limit, $start);
+
         return $this->render('drawings/index.html.twig', [
-            'drawings' => $drawings
+            'drawings' => $drawings,
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
 

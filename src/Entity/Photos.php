@@ -99,6 +99,11 @@ class Photos
         return $this;
     }
 
+    public function stringDateCreation()
+    {
+        return $this->dateCreation->format("d/m/Y");
+    }
+
     public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->dateCreation;
@@ -109,6 +114,11 @@ class Photos
         $this->dateCreation = $dateCreation;
 
         return $this;
+    }
+
+    public function stringDatePublication()
+    {
+        return $this->datePublication->format("d/m/Y");
     }
 
     public function getDatePublication(): ?\DateTimeInterface
