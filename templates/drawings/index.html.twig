@@ -104,29 +104,7 @@
     {% endfor %}
 </div>
 
-<hr class="my-5">
-
-<nav aria-label="..." style="margin : auto !important; width : fit-content;">
-    <ul class="pagination">
-        <li class="page-item {% if page == 1 %}disabled{% endif %}">
-            <a class="page-link" href="{{ path('drawings_index', {'page' : page - 1}) }}" tabindex="-1">
-                &laquo;
-            </a>
-        </li>
-        {% for i in 1 .. pages %}
-            <li class="page-item {% if i == page %}active{% endif %}">
-                <a class="page-link" href="{{ path('drawings_index', {'page' : i}) }}">
-                    {{ i }}
-                </a>
-            </li>
-        {% endfor %}
-        <li class="page-item {% if page == pages %}disabled{% endif %}">
-            <a class="page-link" href="{{ path('drawings_index', {'page' : page + 1}) }}">
-                &raquo;
-            </a>
-        </li>
-    </ul>
-</nav>
+{% include "partials/pagination.html.twig" with {"route" : "drawings_index"} %}
 
 <hr class="my-5">
 
