@@ -52,6 +52,8 @@
         {% endif %}
     {% endfor %}
 
+    {% include "partials/pagination.html.twig" with {"route" : "textes"} %}
+
     <p class="text-center mt-4">
         {#<a href="{{ path('textes_create') }}" class="btn btn-primary">
             Nouveau texte

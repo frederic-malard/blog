@@ -5,19 +5,19 @@
 <nav aria-label="..." style="margin : auto !important; width : fit-content;">
     <ul class="pagination">
         <li class="page-item {% if page == 1 %}disabled{% endif %}">
-            <a class="page-link" href="{{ path(route, {'page' : page - 1}) }}" tabindex="-1">
+            <a{% if page != 1 %} class="page-link" href="{{ path(route, {'page' : page - 1}) }}" tabindex="-1"{% endif %}>
                 &laquo;
             </a>
         </li>
         {% for i in 1 .. pages %}
             <li class="page-item {% if i == page %}active{% endif %}">
-                <a class="page-link" href="{{ path(route, {'page' : i}) }}">
+                <a{% if i != page %} class="page-link" href="{{ path(route, {'page' : i}) }}"{% endif %}>
                     {{ i }}
                 </a>
             </li>
         {% endfor %}
         <li class="page-item {% if page == pages %}disabled{% endif %}">
-            <a class="page-link" href="{{ path(route, {'page' : page + 1}) }}">
+            <a{% if page != pages %} class="page-link" href="{{ path(route, {'page' : page + 1}) }}"{% endif %}>
                 &raquo;
             </a>
         </li>

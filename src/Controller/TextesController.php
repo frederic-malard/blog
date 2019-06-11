@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Texte;
 use App\Form\TexteType;
+use App\Service\PaginationService;
 use App\Repository\TexteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -13,14 +14,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TextesController extends AbstractController
 {
     /**
-     * @Route("/textes", name="textes")
+     * @Route("/textes/{page<\d+>?1}", name="textes")
      */
-    public function index(TexteRepository $repository)
+    public function index(TexteRepository $repository, $page, PaginationService $pagination)
     {
+        $pagination->setEntityClass(Texte::class)
+                   ->setPage($page)
+                   ->setLimit(3);
+
         $textes = $repository->findAll();
 
         return $this->render('textes/index.html.twig', [
-            'textes' => $textes
+            'textes' => $pagination->getData(),
+            'pages' => $pagination->getPages(),
+            'page' => $page
         ]);
     }
 
