@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Dessin;
 use App\Form\DrawingType;
 use App\Entity\CategorieDessin;
+use App\Service\PaginationService;
 use App\Repository\DessinRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,18 +18,14 @@ class DrawingsController extends AbstractController
     /**
      * @Route("/dessins/{page<\d+>?1}", name="drawings_index")
      */
-    public function index(DessinRepository $repository, $page)
+    public function index(DessinRepository $repository, $page, PaginationService $pagination)
     {
-        $limit = 9;
-        $start = ($page - 1) * $limit;
-        $total = count($repository->findAll());
-        $pages = ceil($total / $limit);
-
-        $drawings = $repository->findBy([], [], $limit, $start);
+        $pagination->setEntityClass(Dessin::class)
+                   ->setPage($page);
 
         return $this->render('drawings/index.html.twig', [
-            'drawings' => $drawings,
-            'pages' => $pages,
+            'drawings' => $pagination->getData(),
+            'pages' => $pagination->getPages(),
             'page' => $page
         ]);
     }
