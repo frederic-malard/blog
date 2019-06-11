@@ -13,17 +13,40 @@
 }
 .recipientBulle
 {
-    width : 50% !important;
+    width : 75% !important;
     margin : auto;
+    margin-bottom : 1.5em;
+    margin-top : 1.5em;
 }
 .bulle
 {
     width : 100% !important;
 }
-.recipientRecipient
+.rowRecipient
 {
     margin : auto !important;
     float : none;
+    width : 67% !important;
+}
+.recipientRecipient
+{
+    /*margin : auto !important;
+    float : none;*/
+    min-width : 50%;
+}
+@media all and (max-width : 768px)
+{
+    .rowRecipient
+    {
+        margin : auto !important;
+        float : none;
+        width: 100% !important;
+        min-width : 100% !important;
+    }
+    .recipientRecipient
+    {
+        min-width : 100%;
+    }
 }
 .categorieImg
 {
