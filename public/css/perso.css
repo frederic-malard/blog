@@ -113,3 +113,9 @@ a table
 {
     color : black !important;
 }
+.texte
+{
+    max-width : 720px;
+    text-align : justify;
+    margin : auto;
+}

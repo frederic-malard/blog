@@ -4,26 +4,30 @@
 
 {% block body %}
 
-<header class="page-header">
-    <h1 class="page-title">
-        {{ texte.name }}
-    </h1>
-</header>
+<div class="texte">
 
-<p class="text-center">
-    <img src="{{ texte.image }}" alt="image">
-</p>
-<p class="text-muted text-right">
-    date de première écriture : {{ texte.stringDateCreation() }} <br>
-    date de première publication de la présente version : {{ texte.stringDatePublication() }}
-</p>
-<hr class="my-4">
-{{ texte.contenu | raw }}
+    <header class="page-header">
+        <h1 class="page-title">
+            {{ texte.name }}
+        </h1>
+    </header>
 
-<h2 class="text-center">
-    <a href="{{ path('textes') }}" class="btn btn-primary">
-        retour
-    </a>
-</h2>
+    <p class="text-center">
+        <img src="{{ texte.image }}" alt="image">
+    </p>
+    <p class="text-muted text-right">
+        date de première écriture : {{ texte.stringDateCreation() }} <br>
+        date de première publication de la présente version : {{ texte.stringDatePublication() }}
+    </p>
+    <hr class="my-4">
+        {{ texte.contenu | raw }}
+
+    <h2 class="text-center">
+        <a href="{{ path('textes') }}" class="btn btn-primary">
+            retour
+        </a>
+    </h2>
+
+</div>
 
 {% endblock %}

@@ -4,33 +4,37 @@
 
 {% block body %}
 
-<header class="page-header">
-    <h1 class="page-title">
-        {{ compo.name }}
-    </h1>
-</header>
+<div class="texte">
 
-<audio controls src="{{compo.url}}" style="width:100%">
-</audio>
-<hr class="my-4">
-<p>
-    <img src="{{compo.image}}" alt="alt" style="width:70% ; display : block ; margin : auto;">
-</p>
-<p class="text-right text-muted">
-    Créée le {{ compo.stringDateCreation() }}<br>
-    Publiée le {{ compo.stringDatePublication() }}
-</p>
-<hr class="my-4">
-<p>
-    {{ compo.caption }}
-</p>
+    <header class="page-header">
+        <h1 class="page-title">
+            {{ compo.name }}
+        </h1>
+    </header>
 
-<h2 class="btnRetour">
-    <a href="{{path('compos')}}" class="btn btn-primary m-auto">
-        retour
-    </a>
-</h2>
+    <audio controls src="{{compo.url}}" style="width:100%">
+    </audio>
+    <hr class="my-4">
+    <p>
+        <img src="{{compo.image}}" alt="alt" style="width:70% ; display : block ; margin : auto;">
+    </p>
+    <p class="text-right text-muted">
+        Créée le {{ compo.stringDateCreation() }}<br>
+        Publiée le {{ compo.stringDatePublication() }}
+    </p>
+    <hr class="my-4">
+    <p>
+        {{ compo.caption }}
+    </p>
 
-<hr class="my-4">
+    <h2 class="btnRetour">
+        <a href="{{path('compos')}}" class="btn btn-primary m-auto">
+            retour
+        </a>
+    </h2>
+
+    <hr class="my-4">
+
+</div>
 
 {% endblock %}
