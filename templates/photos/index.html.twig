@@ -17,9 +17,11 @@
             </div>
             <div class="row">
         {% endif %}
-        <a href="{{url}}" class="col-sm-4">
-            <img src="{{photo.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
-        </a>
+        <div class="col-sm-4">
+            <a href="{{url}}">
+                <img src="{{photo.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
+            </a>
+        </div>
     {% endfor %}
 </div>
 
