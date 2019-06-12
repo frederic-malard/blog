@@ -121,6 +121,32 @@
                             </li>
 						</ul>
 					</li>
+					{% if app.user %}
+						<li>
+							<a href="{{ path('account_logout') }}">
+								Déconnexion
+							</a>
+						</li>
+					{% else %}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								Compte
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="{{ path("account_login") }}">
+										Connexion
+									</a>
+								</li>
+								<li>
+									<a href="{{ path("account_register") }}">
+										Inscription
+									</a>
+								</li>
+							</ul>
+						</li>
+					{% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
