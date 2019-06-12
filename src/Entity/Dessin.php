@@ -65,6 +65,7 @@ class Dessin
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\CategorieDessin", mappedBy="dessin")
+     * @Assert\Valid
      */
     private $categorie;
 

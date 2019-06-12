@@ -7,6 +7,7 @@ use App\Form\DrawingType;
 use App\Entity\CategorieDessin;
 use App\Service\PaginationService;
 use App\Repository\DessinRepository;
+use App\Repository\CategorieDessinRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +38,7 @@ class DrawingsController extends AbstractController
      *
      * @return Response
      */
-    public function create(Request $request, ObjectManager $manager)
+    public function create(Request $request, ObjectManager $manager, CategorieDessinRepository $repository)
     {
         $drawing = new Dessin();
 
@@ -46,12 +47,34 @@ class DrawingsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $categories = $repository->findAll();
+            $categoriesNames = [];
+
+            foreach($categories as $category)
+            {
+                $categoriesNames[] = $category->getName();
+            }
+
             foreach($drawing->getCategorie() as $category)
             {
-                $drawing->addCategorie($category);
-                $category->addDessin($drawing);
+                if (in_array($category->getName(), $categoriesNames))
+                {
+                    $name = $category->getName();
+                    $drawing->removeCategorie($category);
+                    $oldCategory = $repository->findOneBy(array('name' => $name));
+                    $drawing->addCategorie($oldCategory);
+                    $oldCategory->addDessin($drawing);
 
-                $manager->persist($category);
+                    $manager->persist($oldCategory);
+                }
+                else
+                {
+                    $drawing->addCategorie($category);
+                    $category->addDessin($drawing);
+                    $category->setRepresentant($drawing);
+    
+                    $manager->persist($category);
+                }
             }
 
             $manager->persist($drawing);

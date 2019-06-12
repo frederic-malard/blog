@@ -1,5 +1,3 @@
-{#
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Poster un dessin{% endblock %}
@@ -27,7 +25,7 @@
         Ajoutez des catégories pour ce dessin
     </p>
     {{ form_widget(form) }}
-    <div type="button" id="add-category" class="btn">
+    <div type="button" id="add-category" class="btn btn-primary">
         Ajouter une catégorie
     </div>
 {% endblock %}
@@ -52,5 +50,3 @@
 {% block javascripts %}
     <script src="/js/addCategoryDrawing.js"></script>
 {% endblock %}
-
-#}

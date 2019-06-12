@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategorieDessinRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class CategorieDessin
 {
@@ -40,7 +41,7 @@ class CategorieDessin
     private $slug;
 
     /**
-     * prepare
+     * prepare before persist and update
      *
      * @ORM\PrePersist
      * @ORM\PreUpdate
