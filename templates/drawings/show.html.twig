@@ -21,7 +21,9 @@
         <td>catégorie(s)</td>
         <td>
             {% for category in drawing.categorie %}
-                {{category.name}}
+                <a href="{{ path('drawings_categories_show', {'slug' : category.slug}) }}">
+                    {{category.name}}
+                </a>
                 {% if not loop.last %}
                     ,
                 {% endif %}
