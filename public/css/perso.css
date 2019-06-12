@@ -142,3 +142,11 @@ a table
     text-align : justify;
     margin : auto;
 }
+.boutonForm
+{
+    margin : auto;
+    display : block;
+    width : fit-content;
+    margin-bottom : 2em;
+    margin-top : 2em;
+}

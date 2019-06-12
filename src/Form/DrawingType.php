@@ -63,7 +63,7 @@ class DrawingType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'Poster le dessin',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-success mt-4 boutonForm'
                 ]
             ])
             //->add('categorie')
