@@ -6,6 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhotosRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ *      fields = {"url"},
+ *      message = "Une autre photo contient la même url, vous vous apprêtez à poster deux fois la même photo. Merci de changer l'url.")
+ * )
  */
 class Photos
 {
@@ -45,6 +50,27 @@ class Photos
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datePublication;
+
+    /**
+     * slugify from name
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     * 
+     * @return void
+     */
+    public function prepare()
+    {
+        if (empty($this->name))
+        {
+            $this->name = substr($this->url, 9, strlen($this->url)-12);
+        }
+        $this->slug = (new Slugify())->slugify($this->nom);
+        if (empty($this->datePublication))
+        {
+            $this->datePublication = (new \DateTime());
+        }
+    }
 
     public function getId(): ?int
     {
