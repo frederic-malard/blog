@@ -6,6 +6,10 @@ use App\Entity\Photos;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PhotoType extends AbstractType
 {
@@ -33,7 +37,7 @@ class PhotoType extends AbstractType
             ->add('url', TextType::class, [
                 'label' => 'url',
                 'attr' => [
-                    'placeholder' => "/photos/[...].jpg"
+                    'value' => "/photos/REMPLACER.jpg"
                 ]
             ])
             ->add('name', TextType::class, [
@@ -56,9 +60,9 @@ class PhotoType extends AbstractType
                 'years' => range(date('Y'), date('Y')-30)
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Poster le dessin',
+                'label' => 'Poster la photo',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary mt-4 boutonForm'
                 ]
             ])
         ;

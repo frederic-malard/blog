@@ -37,7 +37,7 @@ class ComposFormType extends AbstractType
             ->add('url', TextType::class, [
                 'label' => 'url',
                 'attr' => [
-                    'value' => "/compos/.mp3"
+                    'value' => "/compos/REMPLACER.mp3"
                 ]
             ])
             ->add('name', TextType::class, $this->configuration("nom", "nom de la composition"))
@@ -45,7 +45,7 @@ class ComposFormType extends AbstractType
             ->add('image', TextType::class, [
                 'label' => 'image représentante',
                 'attr' => [
-                    'value' => "/imagesCompos/.jpg"
+                    'value' => "/imagesCompos/REMPLACER.jpg"
                 ]
             ])
             ->add('dateCreation', DateType::class, [
@@ -53,7 +53,10 @@ class ComposFormType extends AbstractType
                 'years' => range(date('Y'), date('Y')-30)
             ])
             ->add('save', SubmitType::class, [
-                'label' => "Publier la composition"
+                'label' => "Publier la composition",
+                'attr' => [
+                    'class' => 'btn btn-primary mt-4 boutonForm'
+                ]
             ])
         ;
     }

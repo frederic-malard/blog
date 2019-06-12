@@ -41,6 +41,7 @@ class ComposController extends AbstractController
     public function create(ObjectManager $manager, Request $request)
     {
         $compo = new Compos();
+        
         $form = $this->createForm(ComposFormType::class, $compo);
         $form->handleRequest($request);
 

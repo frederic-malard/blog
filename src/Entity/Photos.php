@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhotosRepository")
@@ -65,7 +67,7 @@ class Photos
         {
             $this->name = substr($this->url, 9, strlen($this->url)-12);
         }
-        $this->slug = (new Slugify())->slugify($this->nom);
+        $this->slug = (new Slugify())->slugify($this->name);
         if (empty($this->datePublication))
         {
             $this->datePublication = (new \DateTime());

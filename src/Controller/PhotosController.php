@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Photos;
+use App\Form\PhotoType;
 use App\Service\PaginationService;
 use App\Repository\PhotosRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -26,30 +29,31 @@ class PhotosController extends AbstractController
     }
 
     /**
-     * @Route("/textes/nouveau", name="textes_create")
+     * @Route("/photos/nouvelle", name="photos_create")
      */
-    /*public function create(Request $request, ObjectManager $manager)
+    public function create(Request $request, ObjectManager $manager)
     {
-        $texte = new Texte();
+        $photo = new Photos();
 
-        $form = $this->createForm(TexteType::class, $texte);
-
+        $form = $this->createForm(PhotoType::class, $photo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $manager->persist($texte);
+            $manager->persist($photo);
             $manager->flush();
 
-            return $this->redirectToRoute("textes_show", ['slug' => $texte->getSlug()]);
+            $this->addFlash('success', "La compo a bien été publiée");
+
+            return $this->redirectToRoute("photo_show", ['slug' => $photo->getSlug()]);
         }
         else
         {
-            return $this->render('textes/new.html.twig', [
+            return $this->render('photos/new.html.twig', [
                 'form' => $form->createView()
             ]);
         }
-    }*/
+    }
 
     /**
      * @Route("/photos/{slug}", name="photo_show")
