@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Compos;
 use App\Form\ComposFormType;
+use App\Service\PaginationService;
 use App\Repository\ComposRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -13,14 +14,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ComposController extends AbstractController
 {
     /**
-     * @Route("/compos", name="compos")
+     * @Route("/compos/{page<\d+>?1}", name="compos")
      */
-    public function index(ComposRepository $repository)
+    public function index($page, PaginationService $pagination)
     {
-        $compos = $repository->findAll();
+        $pagination->setEntityClass(Compos::class)
+                   ->setPage($page);
         
         return $this->render('compos/index.html.twig', [
-            'compos' => $compos
+            'compos' => $pagination->getData(),
+            'pages' => $pagination->getPages(),
+            'page' => $page
         ]);
     }
 

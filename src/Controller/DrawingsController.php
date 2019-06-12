@@ -18,7 +18,7 @@ class DrawingsController extends AbstractController
     /**
      * @Route("/dessins/{page<\d+>?1}", name="drawings_index")
      */
-    public function index(DessinRepository $repository, $page, PaginationService $pagination)
+    public function index($page, PaginationService $pagination)
     {
         $pagination->setEntityClass(Dessin::class)
                    ->setPage($page);

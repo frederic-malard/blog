@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Photos;
+use App\Service\PaginationService;
 use App\Repository\PhotosRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,14 +11,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PhotosController extends AbstractController
 {
     /**
-     * @Route("/photos", name="photos")
+     * @Route("/photos/{page<\d+>?1}", name="photos")
      */
-    public function index(PhotosRepository $repository)
+    public function index($page, PaginationService $pagination)
     {
-        $photos = $repository->findAll();
+        $pagination->setEntityClass(Photos::class)
+                   ->setPage($page);
 
         return $this->render('photos/index.html.twig', [
-            'photos' => $photos
+            'photos' => $pagination->getData(),
+            'pages' => $pagination->getPages(),
+            'page' => $page
         ]);
     }
 

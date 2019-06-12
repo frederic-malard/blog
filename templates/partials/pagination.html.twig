@@ -1,25 +1,27 @@
+{% if pages > 1 %}
 
+    <hr class="my-5">
 
-<hr class="my-5">
-
-<nav aria-label="..." style="margin : auto !important; width : fit-content;">
-    <ul class="pagination">
-        <li class="page-item {% if page == 1 %}disabled{% endif %}">
-            <a{% if page != 1 %} class="page-link" href="{{ path(route, {'page' : page - 1}) }}" tabindex="-1"{% endif %}>
-                &laquo;
-            </a>
-        </li>
-        {% for i in 1 .. pages %}
-            <li class="page-item {% if i == page %}active{% endif %}">
-                <a{% if i != page %} class="page-link" href="{{ path(route, {'page' : i}) }}"{% endif %}>
-                    {{ i }}
+    <nav aria-label="..." style="margin : auto !important; width : fit-content;">
+        <ul class="pagination">
+            <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                <a{% if page != 1 %} class="page-link" href="{{ path(route, {'page' : page - 1}) }}" tabindex="-1"{% endif %}>
+                    &laquo;
                 </a>
             </li>
-        {% endfor %}
-        <li class="page-item {% if page == pages %}disabled{% endif %}">
-            <a{% if page != pages %} class="page-link" href="{{ path(route, {'page' : page + 1}) }}"{% endif %}>
-                &raquo;
-            </a>
-        </li>
-    </ul>
-</nav>
+            {% for i in 1 .. pages %}
+                <li class="page-item {% if i == page %}active{% endif %}">
+                    <a{% if i != page %} class="page-link" href="{{ path(route, {'page' : i}) }}"{% endif %}>
+                        {{ i }}
+                    </a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if page == pages %}disabled{% endif %}">
+                <a{% if page != pages %} class="page-link" href="{{ path(route, {'page' : page + 1}) }}"{% endif %}>
+                    &raquo;
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+{% endif %}

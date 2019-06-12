@@ -16,13 +16,11 @@ class TextesController extends AbstractController
     /**
      * @Route("/textes/{page<\d+>?1}", name="textes")
      */
-    public function index(TexteRepository $repository, $page, PaginationService $pagination)
+    public function index($page, PaginationService $pagination)
     {
         $pagination->setEntityClass(Texte::class)
                    ->setPage($page)
                    ->setLimit(3);
-
-        $textes = $repository->findAll();
 
         return $this->render('textes/index.html.twig', [
             'textes' => $pagination->getData(),
