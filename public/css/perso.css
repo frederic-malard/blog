@@ -150,3 +150,12 @@ a table
     margin-bottom : 2em;
     margin-top : 2em;
 }
+.col11Forcing
+{
+    width : 90% !important;
+}
+.col1Forcing
+{
+    width : 10% !important;
+    max-width : 10% !important;
+}

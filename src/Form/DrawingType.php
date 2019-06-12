@@ -40,7 +40,7 @@ class DrawingType extends AbstractType
             ->add('url', TextType::class, [
                 'label' => 'url',
                 'attr' => [
-                    'placeholder' => "/dessins/[...].jpg"
+                    'value' => "/dessins/REMPLACER.jpg"
                 ]
             ])
             ->add('nom', TextType::class, $this->configuration('nom', "nom du dessin"))

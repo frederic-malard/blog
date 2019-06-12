@@ -31,7 +31,7 @@ class TexteType extends AbstractType
             ->add('image', TextType::class, [
                 'label' => 'image',
                 'attr' => [
-                    'value' => "/imagesTextes/"
+                    'value' => "/imagesTextes/REMPLACER.jpg"
                 ]
             ])
             ->add('resume', TextareaType::class, $this->configuration("résumé", "résumé du texte"))
@@ -52,7 +52,7 @@ class TexteType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => "Publier le texte",
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary mt-4 boutonForm'
                 ]
             ])
         ;

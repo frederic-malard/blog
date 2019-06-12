@@ -37,13 +37,14 @@ class TextesController extends AbstractController
         $texte = new Texte();
 
         $form = $this->createForm(TexteType::class, $texte);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
             $manager->persist($texte);
             $manager->flush();
+
+            $this->addFlash('success', "Le texte a bien été posté");
 
             return $this->redirectToRoute("textes_show", ['slug' => $texte->getSlug()]);
         }

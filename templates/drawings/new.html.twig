@@ -21,13 +21,15 @@
 {% endblock %}
 
 {% block _drawing_categorie_widget %}
-    <p>
+    <hr class="my-4">
+    <h3 class="text-center">
         Ajoutez des catégories pour ce dessin
-    </p>
+    </h3>
     {{ form_widget(form) }}
     <div type="button" id="add-category" class="btn btn-primary boutonForm">
         Ajouter une catégorie
     </div>
+    <hr class="my-4">
 {% endblock %}
 
 {% block _drawing_categorie_entry_row %}
