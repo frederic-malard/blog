@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Comment;
+use App\Entity\CommentPhoto;
+use App\Entity\CommentTexte;
+use App\Entity\CommentDrawing;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
@@ -11,8 +15,9 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  * @InheritanceType("SINGLE_TABLE")
  * @DiscriminatorColumn(name="discriminator", type="string")
+ * @DiscriminatorMap({"comment" = "Comment", "comment" = "CommentDrawing", "commentphoto" = "CommentPhoto", "commenttexte" = "CommentTexte"})
  */
-class Comment
+abstract class Comment
 {
     /**
      * @ORM\Id()

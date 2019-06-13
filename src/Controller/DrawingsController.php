@@ -7,6 +7,8 @@ use App\Form\DrawingType;
 use App\Entity\CategorieDessin;
 use App\Service\PaginationService;
 use App\Repository\DessinRepository;
+use App\Repository\CommentRepository;
+use App\Repository\CommentDrawingRepository;
 use App\Repository\CategorieDessinRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -136,8 +138,14 @@ class DrawingsController extends AbstractController
      *
      * @return Response
      */
-    public function show(Dessin $drawing)
+    public function show(Dessin $drawing, CommentDrawingRepository $repo)
     {
+        $comments = $repo->findAll();
+
+        dump($comments);
+        dump($drawing);
+        die();
+
         return $this->render('drawings/show.html.twig', [
             'drawing' => $drawing
         ]);
