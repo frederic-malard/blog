@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Dessin;
 use App\Form\DrawingType;
+use App\Entity\CommentDrawing;
 use App\Entity\CategorieDessin;
+use App\Repository\UserRepository;
 use App\Service\PaginationService;
 use App\Repository\DessinRepository;
 use App\Repository\CommentRepository;
@@ -138,13 +140,25 @@ class DrawingsController extends AbstractController
      *
      * @return Response
      */
-    public function show(Dessin $drawing, CommentDrawingRepository $repo)
+    public function show(Dessin $drawing, CommentDrawingRepository $repo, DessinRepository $repoDrawing, UserRepository $repoUser, ObjectManager $manager)
     {
+        /*$drawing = $repoDrawing->findAll()[0];
+        $user = $repoUser->findAll()[0];
+
+        $comment = new CommentDrawing();
+        $comment->setCreatedAt(new \DateTime())
+                ->setContent("un test")
+                ->setAuthor($user)
+                ->setDrawing($drawing);
+        
+        $manager->persist($comment);
+        $manager->flush();
+
         $comments = $repo->findAll();
 
         dump($comments);
         dump($drawing);
-        die();
+        die();*/
 
         return $this->render('drawings/show.html.twig', [
             'drawing' => $drawing
