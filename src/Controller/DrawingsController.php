@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DrawingsController extends AbstractController
@@ -35,6 +36,7 @@ class DrawingsController extends AbstractController
      * form, and request treatment
      * 
      * @Route("/dessin/nouveau", name="drawing_new")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @return Response
      */
@@ -94,6 +96,7 @@ class DrawingsController extends AbstractController
 
     /**
      * @Route("/dessin/{slug}/edit", name="drawing_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Dessin $drawing, Request $request, ObjectManager $manager)
     {

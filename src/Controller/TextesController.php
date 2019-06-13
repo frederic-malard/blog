@@ -9,6 +9,7 @@ use App\Repository\TexteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TextesController extends AbstractController
@@ -31,6 +32,7 @@ class TextesController extends AbstractController
 
     /**
      * @Route("/textes/nouveau", name="textes_create")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function create(Request $request, ObjectManager $manager)
     {

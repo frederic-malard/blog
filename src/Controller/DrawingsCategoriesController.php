@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DrawingsCategoriesController extends AbstractController
@@ -30,6 +31,7 @@ class DrawingsCategoriesController extends AbstractController
     
     /**
      * @Route("/dessins/categories/nouvelle", name="drawings_categories_new")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function create(Request $request, ObjectManager $manager, DessinRepository $drawingRepository)
     {
@@ -65,6 +67,7 @@ class DrawingsCategoriesController extends AbstractController
 
     /**
      * @Route("/dessins/categories/{slug}/edit", name="drawings_categories_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(CategorieDessin $category, Request $request, ObjectManager $manager, DessinRepository $drawingRepository)
     {

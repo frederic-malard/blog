@@ -9,6 +9,7 @@ use App\Repository\ComposRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ComposController extends AbstractController
@@ -29,14 +30,8 @@ class ComposController extends AbstractController
     }
 
     /**
-     * form and treatment of datas from it
-     * 
      * @Route("/compos/nouvelle", name="compos_create")
-     *
-     * @param ObjectManager $manager
-     * @param Request $request
-     * 
-     * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function create(ObjectManager $manager, Request $request)
     {
