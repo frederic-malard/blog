@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,6 +54,16 @@ class Texte
      * @ORM\Column(type="date")
      */
     private $datePublication;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentTexte", mappedBy="texte")
+     */
+    private $commentsTexte;
+
+    public function __construct()
+    {
+        $this->commentsTexte = new ArrayCollection();
+    }
 
     /**
      * @ORM\PrePersist
@@ -168,6 +180,37 @@ class Texte
     public function setDatePublication(\DateTimeInterface $datePublication): self
     {
         $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommentTexte[]
+     */
+    public function getCommentsTexte(): Collection
+    {
+        return $this->commentsTexte;
+    }
+
+    public function addCommentsTexte(CommentTexte $commentsTexte): self
+    {
+        if (!$this->commentsTexte->contains($commentsTexte)) {
+            $this->commentsTexte[] = $commentsTexte;
+            $commentsTexte->setTexte($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentsTexte(CommentTexte $commentsTexte): self
+    {
+        if ($this->commentsTexte->contains($commentsTexte)) {
+            $this->commentsTexte->removeElement($commentsTexte);
+            // set the owning side to null (unless already changed)
+            if ($commentsTexte->getTexte() === $this) {
+                $commentsTexte->setTexte(null);
+            }
+        }
 
         return $this;
     }

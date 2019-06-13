@@ -69,9 +69,15 @@ class Dessin
      */
     private $categorie;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentDrawing", mappedBy="drawing")
+     */
+    private $commentsDrawing;
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
+        $this->commentsDrawing = new ArrayCollection();
     }
 
     /**
@@ -222,6 +228,37 @@ class Dessin
         if ($this->categorie->contains($categorie)) {
             $this->categorie->removeElement($categorie);
             $categorie->removeDessin($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommentDrawing[]
+     */
+    public function getCommentsDrawing(): Collection
+    {
+        return $this->commentsDrawing;
+    }
+
+    public function addCommentsDrawing(CommentDrawing $commentsDrawing): self
+    {
+        if (!$this->commentsDrawing->contains($commentsDrawing)) {
+            $this->commentsDrawing[] = $commentsDrawing;
+            $commentsDrawing->setDrawing($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentsDrawing(CommentDrawing $commentsDrawing): self
+    {
+        if ($this->commentsDrawing->contains($commentsDrawing)) {
+            $this->commentsDrawing->removeElement($commentsDrawing);
+            // set the owning side to null (unless already changed)
+            if ($commentsDrawing->getDrawing() === $this) {
+                $commentsDrawing->setDrawing(null);
+            }
         }
 
         return $this;

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,6 +54,16 @@ class Compos
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentCompo", mappedBy="compo")
+     */
+    private $commentsCompo;
+
+    public function __construct()
+    {
+        $this->commentsCompo = new ArrayCollection();
+    }
 
     /**
      * prepare before update and persist
@@ -191,5 +203,36 @@ class Compos
         {
             return substr($this->caption, 0, 130) . "...";
         }
+    }
+
+    /**
+     * @return Collection|CommentCompo[]
+     */
+    public function getCommentsCompo(): Collection
+    {
+        return $this->commentsCompo;
+    }
+
+    public function addCommentsCompo(CommentCompo $commentsCompo): self
+    {
+        if (!$this->commentsCompo->contains($commentsCompo)) {
+            $this->commentsCompo[] = $commentsCompo;
+            $commentsCompo->setCompo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentsCompo(CommentCompo $commentsCompo): self
+    {
+        if ($this->commentsCompo->contains($commentsCompo)) {
+            $this->commentsCompo->removeElement($commentsCompo);
+            // set the owning side to null (unless already changed)
+            if ($commentsCompo->getCompo() === $this) {
+                $commentsCompo->setCompo(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -52,6 +54,16 @@ class Photos
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datePublication;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentPhoto", mappedBy="photo")
+     */
+    private $commentsPhoto;
+
+    public function __construct()
+    {
+        $this->commentsPhoto = new ArrayCollection();
+    }
 
     /**
      * slugify from name
@@ -157,6 +169,37 @@ class Photos
     public function setDatePublication(?\DateTimeInterface $datePublication): self
     {
         $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommentPhoto[]
+     */
+    public function getCommentsPhoto(): Collection
+    {
+        return $this->commentsPhoto;
+    }
+
+    public function addCommentsPhoto(CommentPhoto $commentsPhoto): self
+    {
+        if (!$this->commentsPhoto->contains($commentsPhoto)) {
+            $this->commentsPhoto[] = $commentsPhoto;
+            $commentsPhoto->setPhoto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentsPhoto(CommentPhoto $commentsPhoto): self
+    {
+        if ($this->commentsPhoto->contains($commentsPhoto)) {
+            $this->commentsPhoto->removeElement($commentsPhoto);
+            // set the owning side to null (unless already changed)
+            if ($commentsPhoto->getPhoto() === $this) {
+                $commentsPhoto->setPhoto(null);
+            }
+        }
 
         return $this;
     }
