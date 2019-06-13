@@ -111,7 +111,9 @@
 <hr class="my-5">
 
 <p class="text-center my-5">
-    <a href="{{path("drawing_new")}}" class="btn btn-primary mr-3">Ajouter un dessin</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{path("drawing_new")}}" class="btn btn-primary mr-3">Ajouter un dessin</a>
+    {% endif %}
     <a href="{{path("drawings_categories")}}" class="ml-3 btn btn-primary">Voir les catégories</a>
 </p>
 

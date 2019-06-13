@@ -22,9 +22,11 @@
         </a>
     {% endfor %}
 
-<p class="text-center mt-4">
-    <a href="{{path("compos_create")}}" class="btn btn-primary">Ajouter une compo</a>
-</p>
+{% if is_granted('ROLE_ADMIN') %}
+    <p class="text-center mt-4">
+        <a href="{{path("compos_create")}}" class="btn btn-primary">Ajouter une compo</a>
+    </p>
+{% endif %}
 
     {% include "partials/pagination.html.twig" with {"route" : "compos"} %}
 
