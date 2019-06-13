@@ -122,15 +122,15 @@
 						</ul>
 					</li>
 					{% if app.user %}
-						<li>
+						<li style="margin-left : -0.5em; margin-right : -0.5em;">
 							<a href="{{ path('account_logout') }}">
-								Déconnexion
+								<img src="/images/connecte.png" alt="déconnexion" style="width : 1.5em; margin-top : -0.5em;">
 							</a>
 						</li>
 					{% else %}
-						<li class="dropdown">
+						<li class="dropdown" style="margin-left : -0.5em;margin-right : -0.5em;">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								Compte
+								<img src="/images/deconnecte.png" alt="déconnexion" style="width : 1.5em; margin-top : -0.5em;">
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
