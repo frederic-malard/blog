@@ -66,12 +66,15 @@
     {% endif %}
 
     {% if form is not null %}
+    
         <h3>
             Commenter
         </h3>
+
         {{ form_start(form) }}
         {{ form_widget(form.comment.content) }}
         {{ form_end(form) }}
+
     {% endif %}
 
     <h2 class="text-center">

@@ -149,7 +149,7 @@ class DrawingsController extends AbstractController
 
         if ($user != null)
         {
-            $comment = new CommentDrawing;
+            $comment = new CommentDrawing();
             
             $form = $this->createForm(CommentDrawingType::class, $comment);
             $form->handleRequest($request);
@@ -158,10 +158,15 @@ class DrawingsController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid())
             {
+                $comment->setDrawing($drawing);
+                $comment->setAuthor($user);
+
                 $manager->persist($comment);
                 $manager->flush();
 
                 $this->addFlash('success', 'Le commentaire a bien été ajouté.');
+
+                return $this->redirectToRoute('drawing_show', ['slug' => $drawing->getSlug()]);
             }
         }
 

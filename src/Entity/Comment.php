@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
+ * @ORM\HasLifecycleCallBacks
  * @InheritanceType("SINGLE_TABLE")
  * @DiscriminatorColumn(name="discriminator", type="string")
  * @DiscriminatorMap({"comment" = "Comment", "commentdrawing" = "CommentDrawing", "commentphoto" = "CommentPhoto", "commenttexte" = "CommentTexte", "commentcompo" = "CommentCompo"})
@@ -41,6 +42,15 @@ abstract class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function prepare()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {

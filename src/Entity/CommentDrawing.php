@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentDrawingRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class CommentDrawing extends Comment
 {

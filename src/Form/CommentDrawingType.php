@@ -7,6 +7,7 @@ use App\Entity\CommentDrawing;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CommentDrawingType extends AbstractType
 {
@@ -14,8 +15,13 @@ class CommentDrawingType extends AbstractType
     {
         $builder
             ->add('comment', CommentType::class, [
-                    'data_class' => CommentDrawing::class,
-                    'block_name' => 'commentblock'
+                    'data_class' => CommentDrawing::class
+                ])
+            ->add('save', SubmitType::class, [
+                    'label' => "Envoyer",
+                    'attr' => [
+                            'class' => 'btn btn-success mt-4 boutonForm'
+                        ]
                 ])
         ;
     }
