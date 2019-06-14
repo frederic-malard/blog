@@ -11,21 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 class CommentDrawing extends Comment
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Dessin", inversedBy="commentsDrawing")
      */
     private $drawing;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getDrawing(): ?Dessin
     {

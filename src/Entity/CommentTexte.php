@@ -11,21 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 class CommentTexte extends Comment
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Texte", inversedBy="commentsTexte")
      */
     private $texte;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getTexte(): ?Texte
     {

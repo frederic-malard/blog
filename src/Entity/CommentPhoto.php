@@ -11,21 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 class CommentPhoto extends Comment
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Photos", inversedBy="commentsPhoto")
      */
     private $photo;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getPhoto(): ?Photos
     {

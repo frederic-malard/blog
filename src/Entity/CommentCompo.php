@@ -10,22 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CommentCompo extends Comment
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Compos", inversedBy="commentsCompo")
      */
     private $compo;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getCompo(): ?Compos
     {
