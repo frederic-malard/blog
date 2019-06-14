@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Form\CommentType;
 use App\Entity\CommentTexte;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,10 +13,7 @@ class CommentTexteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
-            ->add('content')
-            ->add('author')
-            ->add('texte')
+            ->add('comment', CommentType::class, ['data_class' => CommentTexte::class])
         ;
     }
 
