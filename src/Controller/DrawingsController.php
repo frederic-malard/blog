@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Dessin;
+use App\Entity\Comment;
 use App\Form\DrawingType;
 use App\Entity\CommentDrawing;
 use App\Entity\CategorieDessin;
+use App\Form\CommentDrawingType;
 use App\Repository\UserRepository;
 use App\Service\PaginationService;
 use App\Repository\DessinRepository;
@@ -128,7 +130,7 @@ class DrawingsController extends AbstractController
         return $this->render(
             "drawings/edit.html.twig",
             [
-                'form' =>$form->createView()
+                'form' => $form->createView()
             ]
         );
     }
@@ -140,12 +142,32 @@ class DrawingsController extends AbstractController
      *
      * @return Response
      */
-    public function show(Dessin $drawing, CommentDrawingRepository $repo, DessinRepository $repoDrawing, UserRepository $repoUser, ObjectManager $manager)
+    public function show(Dessin $drawing, Request $request, ObjectManager $manager)
     {
-        
+        $user = $this->getUser();
+        $formview = null;
+
+        if ($user != null)
+        {
+            $comment = new CommentDrawing;
+            
+            $form = $this->createForm(CommentDrawingType::class, $comment);
+            $form->handleRequest($request);
+
+            $formview = $form->createView();
+
+            if ($form->isSubmitted() && $form->isValid())
+            {
+                $manager->persist($comment);
+                $manager->flush();
+
+                $this->addFlash('success', 'Le commentaire a bien été ajouté.');
+            }
+        }
 
         return $this->render('drawings/show.html.twig', [
-            'drawing' => $drawing
+            'drawing' => $drawing,
+            'form' => $formview
         ]);
     }
 

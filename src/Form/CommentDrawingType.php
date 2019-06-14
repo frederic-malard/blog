@@ -13,7 +13,10 @@ class CommentDrawingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment', CommentType::class, ['data_class' => CommentDrawing::class])
+            ->add('comment', CommentType::class, [
+                    'data_class' => CommentDrawing::class,
+                    'block_name' => 'commentblock'
+                ])
         ;
     }
 
