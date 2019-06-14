@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  * @InheritanceType("SINGLE_TABLE")
  * @DiscriminatorColumn(name="discriminator", type="string")
- * @DiscriminatorMap({"comment" = "Comment", "comment" = "CommentDrawing", "commentphoto" = "CommentPhoto", "commenttexte" = "CommentTexte"})
+ * @DiscriminatorMap({"comment" = "Comment", "commentdrawing" = "CommentDrawing", "commentphoto" = "CommentPhoto", "commenttexte" = "CommentTexte", "commentcompo" = "CommentCompo"})
  */
 abstract class Comment
 {
@@ -24,7 +24,7 @@ abstract class Comment
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="datetime")

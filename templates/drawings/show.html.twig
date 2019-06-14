@@ -56,17 +56,19 @@
         Commentaires
     </h3>
     {% for comment in drawing.commentsDrawing %}
-        <p>
-            {{ comment.author.login }}
-            <span class="text-muted">
-                - {{ comment.stringCreatedAt() }}
-            </span>
-
+        <p class="text-muted">
+            {{ comment.author.login }} - {{ comment.stringCreatedAt() }}
         </p>
         <p class="" style="background : #fff8cc; padding : 1em; border-radius : 1em;">
             {{ comment.content }}
         </p>
     {% endfor %}
+{% endif %}
+
+{% if app.user %}
+    <h3>
+        Commenter
+    </h3>
 {% endif %}
 
 <h2 class="text-center">
