@@ -47,6 +47,11 @@ abstract class Comment
         return $this->id;
     }
 
+    public function stringCreatedAt()
+    {
+        return "le " . $this->createdAt->format("d/m/Y à h:i:s");
+    }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;

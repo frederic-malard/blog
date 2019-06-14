@@ -57,6 +57,13 @@
     </h3>
     {% for comment in drawing.commentsDrawing %}
         <p>
+            {{ comment.author.login }}
+            <span class="text-muted">
+                - {{ comment.stringCreatedAt() }}
+            </span>
+
+        </p>
+        <p class="" style="background : #fff8cc; padding : 1em; border-radius : 1em;">
             {{ comment.content }}
         </p>
     {% endfor %}
