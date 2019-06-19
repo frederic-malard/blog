@@ -22,6 +22,32 @@
     <hr class="my-4">
         {{ texte.contenu | raw }}
 
+    {% if texte.commentsTexte | length > 0 %}
+        <h3>
+            Commentaires
+        </h3>
+        {% for comment in texte.commentsTexte %}
+            <p class="text-muted">
+                {{ comment.author.login }} - {{ comment.stringCreatedAt() }}
+            </p>
+            <p class="" style="background : #fff8cc; padding : 1em; border-radius : 1em;">
+                {{ comment.content }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+    {% if form is not null %}
+    
+        <h3>
+            Commenter
+        </h3>
+
+        {{ form_start(form) }}
+        {{ form_widget(form.comment.content) }}
+        {{ form_end(form) }}
+
+    {% endif %}
+
     <h2 class="text-center">
         <a href="{{ path('textes') }}" class="btn btn-primary">
             retour

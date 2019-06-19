@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Compos;
+use App\Entity\CommentCompo;
 use App\Form\ComposFormType;
+use App\Form\CommentCompoType;
 use App\Service\PaginationService;
 use App\Repository\ComposRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,10 +66,37 @@ class ComposController extends AbstractController
      *
      * @return Response
      */
-    public function show(Compos $compo)
+    public function show(Compos $compo, Request $request, ObjectManager $manager)
     {
+        $user = $this->getUser();
+        $formview = null;
+
+        if ($user != null)
+        {
+            $comment = new CommentCompo();
+            
+            $form = $this->createForm(CommentCompoType::class, $comment);
+            $form->handleRequest($request);
+
+            $formview = $form->createView();
+
+            if ($form->isSubmitted() && $form->isValid())
+            {
+                $comment->setCompo($compo);
+                $comment->setAuthor($user);
+
+                $manager->persist($comment);
+                $manager->flush();
+
+                $this->addFlash('success', 'Le commentaire a bien été ajouté.');
+
+                return $this->redirectToRoute('compos_show', ['slug' => $compo->getSlug()]);
+            }
+        }
+
         return $this->render("compos/show.html.twig", [
-            'compo' => $compo
+            'compo' => $compo,
+            'form' => $formview
         ]);
     }
 }

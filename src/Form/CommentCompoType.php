@@ -7,6 +7,7 @@ use App\Entity\CommentCompo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CommentCompoType extends AbstractType
 {
@@ -14,6 +15,12 @@ class CommentCompoType extends AbstractType
     {
         $builder
             ->add('comment', CommentType::class, ['data_class' => CommentCompo::class])
+            ->add('save', SubmitType::class, [
+                    'label' => "Envoyer",
+                    'attr' => [
+                            'class' => 'btn btn-success mt-4 boutonForm'
+                        ]
+                ])
         ;
     }
 

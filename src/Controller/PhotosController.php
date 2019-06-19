@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Photos;
 use App\Form\PhotoType;
+use App\Entity\CommentPhoto;
+use App\Form\CommentPhotoType;
 use App\Service\PaginationService;
 use App\Repository\PhotosRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,10 +62,37 @@ class PhotosController extends AbstractController
     /**
      * @Route("/photos/{slug}", name="photo_show")
      */
-    public function show(Photos $photo)
+    public function show(Photos $photo, Request $request, ObjectManager $manager)
     {
+        $user = $this->getUser();
+        $formview = null;
+
+        if ($user != null)
+        {
+            $comment = new CommentPhoto();
+            
+            $form = $this->createForm(CommentPhotoType::class, $comment);
+            $form->handleRequest($request);
+
+            $formview = $form->createView();
+
+            if ($form->isSubmitted() && $form->isValid())
+            {
+                $comment->setPhoto($photo);
+                $comment->setAuthor($user);
+
+                $manager->persist($comment);
+                $manager->flush();
+
+                $this->addFlash('success', 'Le commentaire a bien été ajouté.');
+
+                return $this->redirectToRoute('photo_show', ['slug' => $photo->getSlug()]);
+            }
+        }
+
         return $this->render("photos/show.html.twig", [
-            'photo' => $photo
+            'photo' => $photo,
+            'form' => $formview
         ]);
     }
 }
