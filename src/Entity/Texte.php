@@ -60,9 +60,15 @@ class Texte
      */
     private $commentsTexte;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RatingTexte", mappedBy="texte")
+     */
+    private $ratingTextes;
+
     public function __construct()
     {
         $this->commentsTexte = new ArrayCollection();
+        $this->ratingTextes = new ArrayCollection();
     }
 
     /**
@@ -209,6 +215,37 @@ class Texte
             // set the owning side to null (unless already changed)
             if ($commentsTexte->getTexte() === $this) {
                 $commentsTexte->setTexte(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RatingTexte[]
+     */
+    public function getRatingTextes(): Collection
+    {
+        return $this->ratingTextes;
+    }
+
+    public function addRatingTexte(RatingTexte $ratingTexte): self
+    {
+        if (!$this->ratingTextes->contains($ratingTexte)) {
+            $this->ratingTextes[] = $ratingTexte;
+            $ratingTexte->setTexte($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRatingTexte(RatingTexte $ratingTexte): self
+    {
+        if ($this->ratingTextes->contains($ratingTexte)) {
+            $this->ratingTextes->removeElement($ratingTexte);
+            // set the owning side to null (unless already changed)
+            if ($ratingTexte->getTexte() === $this) {
+                $ratingTexte->setTexte(null);
             }
         }
 

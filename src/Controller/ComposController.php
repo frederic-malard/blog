@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ComposController extends AbstractController
 {
     /**
-     * @Route("/compos/{page<\d+>?1}", name="compos")
+     * @Route("/compo/{page<\d+>?1}", name="compos")
      */
     public function index($page, PaginationService $pagination)
     {

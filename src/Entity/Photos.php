@@ -60,9 +60,15 @@ class Photos
      */
     private $commentsPhoto;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RatingPhoto", mappedBy="photo")
+     */
+    private $ratingPhotos;
+
     public function __construct()
     {
         $this->commentsPhoto = new ArrayCollection();
+        $this->ratingPhotos = new ArrayCollection();
     }
 
     /**
@@ -198,6 +204,37 @@ class Photos
             // set the owning side to null (unless already changed)
             if ($commentsPhoto->getPhoto() === $this) {
                 $commentsPhoto->setPhoto(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RatingPhoto[]
+     */
+    public function getRatingPhotos(): Collection
+    {
+        return $this->ratingPhotos;
+    }
+
+    public function addRatingPhoto(RatingPhoto $ratingPhoto): self
+    {
+        if (!$this->ratingPhotos->contains($ratingPhoto)) {
+            $this->ratingPhotos[] = $ratingPhoto;
+            $ratingPhoto->setPhoto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRatingPhoto(RatingPhoto $ratingPhoto): self
+    {
+        if ($this->ratingPhotos->contains($ratingPhoto)) {
+            $this->ratingPhotos->removeElement($ratingPhoto);
+            // set the owning side to null (unless already changed)
+            if ($ratingPhoto->getPhoto() === $this) {
+                $ratingPhoto->setPhoto(null);
             }
         }
 

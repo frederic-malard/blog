@@ -24,7 +24,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DrawingsController extends AbstractController
 {
     /**
-     * @Route("/dessins/{page<\d+>?1}", name="drawings_index")
+     * @Route("/dessin/{page<\d+>?1}", name="drawings_index")
      */
     public function index($page, PaginationService $pagination)
     {
@@ -37,6 +37,9 @@ class DrawingsController extends AbstractController
             'page' => $page
         ]);
     }
+    /*[Composer\Downloader\TransportException]                                                          
+    The "https://flex.symfony.com/versions.json" file could not be downloaded: failed to open stream  
+    : Connection refused    */   
 
     /**
      * form, and request treatment

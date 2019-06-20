@@ -2,31 +2,31 @@
 
 namespace App\Entity;
 
-use App\Entity\Comment;
-use App\Entity\CommentCompo;
-use App\Entity\CommentPhoto;
-use App\Entity\CommentTexte;
-use App\Entity\CommentDrawing;
+use App\Entity\Rating;
+use App\Entity\RatingCompo;
+use App\Entity\RatingPhoto;
+use App\Entity\RatingTexte;
+use App\Entity\RatingDrawing;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\RatingRepository")
  * @ORM\HasLifecycleCallBacks
  * @InheritanceType("SINGLE_TABLE")
  * @DiscriminatorColumn(name="discriminator", type="string")
- * @DiscriminatorMap({"comment" = "Comment", "commentdrawing" = "CommentDrawing", "commentphoto" = "CommentPhoto", "commenttexte" = "CommentTexte", "commentcompo" = "CommentCompo"})
+ * @DiscriminatorMap({"rating" = "Rating", "ratingdrawing" = "RatingDrawing", "ratingphoto" = "RatingPhoto", "ratingtexte" = "RatingTexte", "ratingcompo" = "RatingCompo"})
  */
-abstract class Comment
+abstract class Rating
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="datetime")
@@ -34,33 +34,19 @@ abstract class Comment
     private $createdAt;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="integer")
      */
-    private $content;
+    private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ratings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-    public function prepare()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function stringCreatedAt()
-    {
-        return "le " . $this->createdAt->format("d/m/Y à h:i:s");
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
@@ -75,14 +61,14 @@ abstract class Comment
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getValue(): ?int
     {
-        return $this->content;
+        return $this->value;
     }
 
-    public function setContent(string $content): self
+    public function setValue(int $value): self
     {
-        $this->content = $content;
+        $this->value = $value;
 
         return $this;
     }

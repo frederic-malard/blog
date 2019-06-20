@@ -74,10 +74,16 @@ class Dessin
      */
     private $commentsDrawing;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RatingDrawing", mappedBy="drawing")
+     */
+    private $ratingDrawings;
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
         $this->commentsDrawing = new ArrayCollection();
+        $this->ratingDrawings = new ArrayCollection();
     }
 
     /**
@@ -258,6 +264,37 @@ class Dessin
             // set the owning side to null (unless already changed)
             if ($commentsDrawing->getDrawing() === $this) {
                 $commentsDrawing->setDrawing(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RatingDrawing[]
+     */
+    public function getRatingDrawings(): Collection
+    {
+        return $this->ratingDrawings;
+    }
+
+    public function addRatingDrawing(RatingDrawing $ratingDrawing): self
+    {
+        if (!$this->ratingDrawings->contains($ratingDrawing)) {
+            $this->ratingDrawings[] = $ratingDrawing;
+            $ratingDrawing->setDrawing($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRatingDrawing(RatingDrawing $ratingDrawing): self
+    {
+        if ($this->ratingDrawings->contains($ratingDrawing)) {
+            $this->ratingDrawings->removeElement($ratingDrawing);
+            // set the owning side to null (unless already changed)
+            if ($ratingDrawing->getDrawing() === $this) {
+                $ratingDrawing->setDrawing(null);
             }
         }
 

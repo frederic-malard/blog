@@ -60,9 +60,15 @@ class Compos
      */
     private $commentsCompo;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RatingCompo", mappedBy="compo")
+     */
+    private $ratingCompos;
+
     public function __construct()
     {
         $this->commentsCompo = new ArrayCollection();
+        $this->ratingCompos = new ArrayCollection();
     }
 
     /**
@@ -230,6 +236,37 @@ class Compos
             // set the owning side to null (unless already changed)
             if ($commentsCompo->getCompo() === $this) {
                 $commentsCompo->setCompo(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RatingCompo[]
+     */
+    public function getRatingCompos(): Collection
+    {
+        return $this->ratingCompos;
+    }
+
+    public function addRatingCompo(RatingCompo $ratingCompo): self
+    {
+        if (!$this->ratingCompos->contains($ratingCompo)) {
+            $this->ratingCompos[] = $ratingCompo;
+            $ratingCompo->setCompo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRatingCompo(RatingCompo $ratingCompo): self
+    {
+        if ($this->ratingCompos->contains($ratingCompo)) {
+            $this->ratingCompos->removeElement($ratingCompo);
+            // set the owning side to null (unless already changed)
+            if ($ratingCompo->getCompo() === $this) {
+                $ratingCompo->setCompo(null);
             }
         }
 
