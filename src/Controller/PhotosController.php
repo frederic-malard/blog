@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PhotosController extends AbstractController
 {
     /**
-     * @Route("/photos/{page<\d+>?1}", name="photos")
+     * @Route("/photo/{page<\d+>?1}", name="photos")
      */
     public function index($page, PaginationService $pagination)
     {
@@ -32,7 +32,7 @@ class PhotosController extends AbstractController
     }
 
     /**
-     * @Route("/photos/nouvelle", name="photos_create")
+     * @Route("/photo/nouvelle", name="photos_create")
      * @IsGranted("ROLE_ADMIN")
      */
     public function create(Request $request, ObjectManager $manager)
@@ -60,7 +60,7 @@ class PhotosController extends AbstractController
     }
 
     /**
-     * @Route("/photos/{slug}", name="photo_show")
+     * @Route("/photo/{slug}", name="photo_show")
      */
     public function show(Photos $photo, Request $request, ObjectManager $manager)
     {

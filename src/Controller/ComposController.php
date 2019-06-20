@@ -32,7 +32,7 @@ class ComposController extends AbstractController
     }
 
     /**
-     * @Route("/compos/nouvelle", name="compos_create")
+     * @Route("/compo/nouvelle", name="compos_create")
      * @IsGranted("ROLE_ADMIN")
      */
     public function create(ObjectManager $manager, Request $request)
@@ -62,7 +62,7 @@ class ComposController extends AbstractController
     /**
      * show one compo
      * 
-     * @Route("/compos/{slug}", name="compos_show")
+     * @Route("/compo/{slug}", name="compos_show")
      *
      * @return Response
      */
