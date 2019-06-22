@@ -45,6 +45,10 @@ class TextesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $contenu = $texte->getContenu();
+            $contenu = '<p>' . nl2br($contenu) . '</p>';
+            $texte->setContenu($contenu);
+
             $manager->persist($texte);
             $manager->flush();
 
