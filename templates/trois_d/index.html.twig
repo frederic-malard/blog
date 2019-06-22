@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}textes{% endblock %}
+{% block title %}3D{% endblock %}
 
 {% block body %}
 
@@ -8,12 +8,12 @@
 
     <header class="page-header">
         <h1 class="page-title">
-            tous mes textes
+            toutes mes images 3D
         </h1>
     </header>
 
     <p class="alert alert-warning">
-        liste des textes momentanément vidée (mes textes actuels ne sont pas présentables, cette liste sera mise à jour plus tard)
+        liste des images 3D momentanément vidée (mes images actuelles ne sont pas présentables, cette liste sera mise à jour plus tard)
     </p>
 
 {#
@@ -56,7 +56,6 @@
             <hr class="my-4">
         {% endif %}
     {% endfor %}
-#}
 
     {% include "partials/pagination.html.twig" with {"route" : "textes"} %}
 
@@ -69,6 +68,7 @@
     {% endif %}
     
     <hr class="my-4">
+#}
 
 </div>
 

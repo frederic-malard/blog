@@ -12,6 +12,11 @@
         </h1>
     </header>
 
+    <p class="alert alert-warning">
+        liste des compositions momentanément vidée (mes compos actuelles ne sont pas présentables, cette liste sera mise à jour plus tard)
+    </p>
+
+{#
     {% for compo in compos %}
         <a href="{{path('compos_show', {'slug' : compo.slug})}}" style="margin-bottom : 2em; display : block;">
             <div class="text-center nomCompo">
@@ -21,6 +26,7 @@
             </div>
         </a>
     {% endfor %}
+#}
 
 {% if is_granted('ROLE_ADMIN') %}
     <p class="text-center mt-4">
