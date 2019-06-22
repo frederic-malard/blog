@@ -62,47 +62,49 @@
 
 <div class="row" id="gride">
     {% for drawing in drawings %}
-        {% set url = path('drawing_show', {'slug' : drawing.slug}) %}
-        {#<div class="card col-md-4">
-            <div class="card-header">
-                <a href="{{url}}">
-                    <h3>{{drawing.nom}}</h3>
-                </a>
-                <p>
-                    catégorie(s) : 
-                    {% for category in drawing.categorie %}
-                        {{category.name}}
-                        {% if not loop.last %}
-                            ,
-                        {% endif %}
-                    {% endfor %}
-                    <br>
-                    dessiné le {{drawing.stringDateCreation}}<br>
-                    publié le {{drawing.stringDatePublication}}
-                </p>
-            </div>
-            <div class="card-body">
-                <p>#}
-                    {% if loop.index0 % 3 == 0 %}
-                        </div>
-                        <div class="row">
-                    {% endif %}
-                    <div class="col-sm-4">
-                        <a href="{{url}}">
-                            <img src="{{drawing.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
-                        </a>
-                    </div>
-                {#</p>
-                <p>
-                    {{drawing.getCaptionIntroduction()}}
-                </p>
-                <p>
-                    <a href="{{url}}" class="btn btn-primary">
-                        Voir le dessin
+        {% if drawing.display is null or drawing.display == true %}
+            {% set url = path('drawing_show', {'slug' : drawing.slug}) %}
+            {#<div class="card col-md-4">
+                <div class="card-header">
+                    <a href="{{url}}">
+                        <h3>{{drawing.nom}}</h3>
                     </a>
-                </p>
-            </div>
-        </div>#}
+                    <p>
+                        catégorie(s) : 
+                        {% for category in drawing.categorie %}
+                            {{category.name}}
+                            {% if not loop.last %}
+                                ,
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                        dessiné le {{drawing.stringDateCreation}}<br>
+                        publié le {{drawing.stringDatePublication}}
+                    </p>
+                </div>
+                <div class="card-body">
+                    <p>#}
+                        {% if loop.index0 % 3 == 0 %}
+                            </div>
+                            <div class="row">
+                        {% endif %}
+                        <div class="col-sm-4">
+                            <a href="{{url}}">
+                                <img src="{{drawing.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
+                            </a>
+                        </div>
+                    {#</p>
+                    <p>
+                        {{drawing.getCaptionIntroduction()}}
+                    </p>
+                    <p>
+                        <a href="{{url}}" class="btn btn-primary">
+                            Voir le dessin
+                        </a>
+                    </p>
+                </div>
+            </div>#}
+        {% endif %}
     {% endfor %}
 </div>
 

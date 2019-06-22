@@ -65,6 +65,11 @@ class Texte
      */
     private $ratingTextes;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $display;
+
     public function __construct()
     {
         $this->commentsTexte = new ArrayCollection();
@@ -248,6 +253,18 @@ class Texte
                 $ratingTexte->setTexte(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDisplay(): ?bool
+    {
+        return $this->display;
+    }
+
+    public function setDisplay(?bool $display): self
+    {
+        $this->display = $display;
 
         return $this;
     }

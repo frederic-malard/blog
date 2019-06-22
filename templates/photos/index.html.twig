@@ -12,16 +12,18 @@
 
 <div class="row" id="gride">
     {% for photo in photos %}
-        {% set url = path('photo_show', {'slug' : photo.slug}) %}
-        {% if loop.index0 % 3 == 0 %}
+        {% if photo.display is null or photo.display == true %}
+            {% set url = path('photo_show', {'slug' : photo.slug}) %}
+            {% if loop.index0 % 3 == 0 %}
+                </div>
+                <div class="row">
+            {% endif %}
+            <div class="col-sm-4">
+                <a href="{{url}}">
+                    <img src="{{photo.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
+                </a>
             </div>
-            <div class="row">
         {% endif %}
-        <div class="col-sm-4">
-            <a href="{{url}}">
-                <img src="{{photo.url}}" alt="dessin" style="width : 100%;" class="imgDessin">
-            </a>
-        </div>
     {% endfor %}
 </div>
 

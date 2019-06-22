@@ -16,47 +16,47 @@
         liste des textes momentanément vidée (mes textes actuels ne sont pas présentables, cette liste sera mise à jour plus tard)
     </p>
 
-{#
     {% for texte in textes %}
-        {% if not loop.first %}
-            <hr class="my-4">
-        {% endif %}
-        <h3 class="text-center">
-            <a href="{{ path('textes_show', {'slug' : texte.slug}) }}">
-                {{ texte.name }}
+        {% if texte.display is null or texte.display == true %}
+            {% if not loop.first %}
+                <hr class="my-4">
+            {% endif %}
+            <h3 class="text-center">
+                <a href="{{ path('textes_show', {'slug' : texte.slug}) }}">
+                    {{ texte.name }}
+                </a>
+            </h3>
+
+            <a href="{{ path('textes_show', {'slug' : texte.slug}) }}" class="aImgTexteIndex">
+                <img src="{{ texte.image }}" alt="image" style="width:300px; display:block;" class="float-left mr-3">
             </a>
-        </h3>
 
-        <a href="{{ path('textes_show', {'slug' : texte.slug}) }}" class="aImgTexteIndex">
-            <img src="{{ texte.image }}" alt="image" style="width:300px; display:block;" class="float-left mr-3">
-        </a>
-
-        <table class="table">
-            <tr>
-                <td style="width : 30%;">date de première écriture</td>
-                <td>
-                    {{ texte.stringDateCreation() }}
-                </td>
-            </tr>
-            <tr>
-                <td>date de première publication de la présente version</td>
-                <td>{{ texte.stringDatePublication() }}</td>
-            </tr>
-            <tr>
-                <td>résumé</td>
-                <td>{{ texte.resume }}</td>
-            </tr>
-            <tr>
-                <td>extrait du début</td>
-                <td>{{ texte.debut() | raw }}</td>
-            </tr>
-        </table>
-        
-        {% if loop.last %}
-            <hr class="my-4">
+            <table class="table">
+                <tr>
+                    <td style="width : 30%;">date de première écriture</td>
+                    <td>
+                        {{ texte.stringDateCreation() }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>date de première publication de la présente version</td>
+                    <td>{{ texte.stringDatePublication() }}</td>
+                </tr>
+                <tr>
+                    <td>résumé</td>
+                    <td>{{ texte.resume }}</td>
+                </tr>
+                <tr>
+                    <td>extrait du début</td>
+                    <td>{{ texte.debut() | raw }}</td>
+                </tr>
+            </table>
+            
+            {% if loop.last %}
+                <hr class="my-4">
+            {% endif %}
         {% endif %}
     {% endfor %}
-#}
 
     {% include "partials/pagination.html.twig" with {"route" : "textes"} %}
 

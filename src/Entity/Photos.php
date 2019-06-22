@@ -65,6 +65,11 @@ class Photos
      */
     private $ratingPhotos;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $display;
+
     public function __construct()
     {
         $this->commentsPhoto = new ArrayCollection();
@@ -237,6 +242,18 @@ class Photos
                 $ratingPhoto->setPhoto(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDisplay(): ?bool
+    {
+        return $this->display;
+    }
+
+    public function setDisplay(?bool $display): self
+    {
+        $this->display = $display;
 
         return $this;
     }

@@ -79,6 +79,11 @@ class Dessin
      */
     private $ratingDrawings;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $display;
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
@@ -297,6 +302,18 @@ class Dessin
                 $ratingDrawing->setDrawing(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDisplay(): ?bool
+    {
+        return $this->display;
+    }
+
+    public function setDisplay(?bool $display): self
+    {
+        $this->display = $display;
 
         return $this;
     }
