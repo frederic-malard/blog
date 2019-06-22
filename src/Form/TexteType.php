@@ -27,7 +27,13 @@ class TexteType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, $this->configuration("nom", "nom du texte"))
-            ->add('contenu', TextareaType::class, $this->configuration("contenu", "le texte en lui même"))
+            ->add('contenu', TextareaType::class, [
+                'label' => 'contenu',
+                'attr' => [
+                    'placeholder' => "le texte en lui même",
+                    'style' => "height : 25em;"
+                    ]
+                ])
             ->add('image', TextType::class, [
                 'label' => 'image',
                 'attr' => [
