@@ -49,6 +49,12 @@
     {% endif %}
 
     <h2 class="text-center">
+        <a href="{{ path('textes_edit', {'slug' : texte.slug }) }}" class="btn btn-info">
+            modifier
+        </a>
+    </h2>
+
+    <h2 class="text-center">
         <a href="{{ path('textes') }}" class="btn btn-primary">
             retour
         </a>

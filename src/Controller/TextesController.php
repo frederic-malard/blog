@@ -63,6 +63,45 @@ class TextesController extends AbstractController
             ]);
         }
     }
+    
+        /**
+         * @Route("/textes/{slug}/edit", name="textes_edit")
+         * @IsGranted("ROLE_ADMIN")
+         */
+        public function edit(Texte $texte, Request $request, ObjectManager $manager)
+        {
+            $contenu = str_replace('<br />', "", $texte->getContenu()); // suppression des br ajoutés dans textescreate
+            $length = strlen($contenu);
+            $contenu = substr($contenu, 3, $length - 7); // suppression de la balise p
+            $texte->setContenu($contenu);
+
+            $image = $texte->getImage(); // image changée plus tard par TextType
+
+            $form = $this->createForm(TexteType::class, $texte);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid())
+            {
+                $contenu = $texte->getContenu();
+                $contenu = '<p>' . nl2br($contenu) . '</p>';
+                $texte->setContenu($contenu);
+
+                $manager->persist($texte);
+                $manager->flush();
+    
+                $this->addFlash('success', "Le texte a bien été modifié");
+    
+                return $this->redirectToRoute('textes_show', ['slug' => $texte->getSlug()]);
+            }
+    
+            return $this->render(
+                "textes/edit.html.twig",
+                [
+                    'form' => $form->createView(),
+                    'image' => $image
+                ]
+            );
+        }
 
     /**
      * @Route("/textes/{slug}", name="textes_show")
