@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Texte;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Repository\ArtworkRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Texte|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Texte[]    findAll()
  * @method Texte[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TexteRepository extends ServiceEntityRepository
+class TexteRepository extends ArtworkRepository
 {
     public function __construct(RegistryInterface $registry)
     {

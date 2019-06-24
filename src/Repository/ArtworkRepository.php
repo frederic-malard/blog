@@ -2,22 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Compos;
-use App\Repository\ArtworkRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Compos|null find($id, $lockMode = null, $lockVersion = null)
- * @method Compos|null findOneBy(array $criteria, array $orderBy = null)
- * @method Compos[]    findAll()
- * @method Compos[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ?|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ?|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ?[]    findAll()
+ * @method ?[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ComposRepository extends ArtworkRepository
+abstract class ArtworkRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function findToDisplay($offset, $limit)
     {
-        parent::__construct($registry, Compos::class);
+        $result = $this->createQueryBuilder('a')
+            ->andWhere('a.display = :val OR a.display IS null')
+            ->setParameter('val', true)
+            ->orderBy('a.id', 'ASC')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $result;
     }
 
     // /**

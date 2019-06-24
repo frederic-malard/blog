@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Dessin;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Repository\ArtworkRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Dessin|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Dessin[]    findAll()
  * @method Dessin[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DessinRepository extends ServiceEntityRepository
+class DessinRepository extends ArtworkRepository
 {
     public function __construct(RegistryInterface $registry)
     {

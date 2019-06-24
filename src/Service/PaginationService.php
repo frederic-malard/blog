@@ -30,7 +30,7 @@ class PaginationService
     {
         $offset = ($this->currentPage - 1) * $this->limit;
         $repository = $this->manager->getRepository($this->entityClass);
-        $data = $repository->findBy([], [], $this->limit, $offset);
+        $data = $repository->findToDisplay($offset, $this->limit);
         
         return $data;
     }

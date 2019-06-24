@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Photos;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Repository\ArtworkRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Photos|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Photos[]    findAll()
  * @method Photos[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PhotosRepository extends ServiceEntityRepository
+class PhotosRepository extends ArtworkRepository
 {
     public function __construct(RegistryInterface $registry)
     {
