@@ -1,10 +1,6 @@
 # blog artistique personnel
 Mon blog personnel, créé en Symfony, avec bootstrap et javascript. Sujet : art (dessins, photos, écriture, composition musicale)
 
-## SITE EN LIGNE
-
-le site web est en ligne, à l'adresse https://blog.frederic-malard.com
-
 ## INSTALLATION
 
 ### cloner le projet
